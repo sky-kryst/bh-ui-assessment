@@ -102,7 +102,7 @@ export const Login = () => {
           <ScrollView style={styles.Container}>
             {countryCodeArray.map((currentElement) => {
               return (
-                <View style={styles.Show}>
+                <View style={styles.Show} key={currentElement.country}>
                   <Text>{currentElement.country}</Text>
                 </View>
               );
