@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { AuthLayout } from "../../components";
+import { AuthLayout, PrimaryButton } from "../../components";
 import styles from "./styles";
 
 export const Login = () => {
@@ -138,11 +138,7 @@ export const Login = () => {
             </Text>
           )}
         </View>
-        <TouchableWithoutFeedback onPress={submitForm}>
-          <View style={styles.Button}>
-            <Text style={styles.ButtonText}>Let's Go</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <PrimaryButton onPress={submitForm} buttonText="Let's Go" />
         <Text
           style={[
             styles.BlueLink,
