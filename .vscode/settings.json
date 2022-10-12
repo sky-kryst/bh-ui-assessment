@@ -6,6 +6,7 @@
     "assets",
     "components",
     "constants",
-    "stores"
+    "stores",
+    "App.tsx"
   ]
 }
