@@ -1,6 +1,6 @@
 import React, { Component, createRef } from "react";
-import { Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
-import { AuthLayout } from "../../components";
+import { Text, TextInput, View } from "react-native";
+import { AuthLayout, PrimaryButton } from "../../components";
 import styles from "./styles";
 
 const noOfInputsArr = [1, 2, 3, 4, 5, 6];
@@ -96,11 +96,7 @@ export class OTP extends Component {
             ))}
           </View>
           <View>
-            <TouchableWithoutFeedback>
-              <View>
-                <Text>Submit</Text>
-              </View>
-            </TouchableWithoutFeedback>
+            <PrimaryButton buttonText="Submit" />
             <Text>Resend OTP 30s</Text>
           </View>
         </View>
