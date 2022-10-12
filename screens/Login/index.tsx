@@ -10,12 +10,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import shallow from "zustand/shallow";
 import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
+import { useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
 
 export const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [countryCode, setCountryCode] = useState("+1");
+  const { phoneNumber, countryCode, modifyCountryCode, modifyPhoneNumber } =
+    useLoginDetailsStore((state) => ({ ...state }), shallow);
+  // const [phoneNumber, setPhoneNumber] = useLoginDetailsStore(state=>({...state}));
+  // const [countryCode, setCountryCode] = useState("+1");
   const [isError, setIsError] = useState(false);
   const [isCountryCodeModal, setIsCountryCodeModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,8 +34,8 @@ export const Login = () => {
 
   const setInitialStates = () => {
     setIsLoading(false);
-    setPhoneNumber("");
-    setCountryCode("+1");
+    modifyPhoneNumber("");
+    modifyCountryCode("+1");
     clearErrors();
   };
 
@@ -85,7 +89,7 @@ export const Login = () => {
         </View>
         <TextInput
           style={[styles.PhoneNumber, phoneNumber && { fontWeight: "500" }]}
-          onChangeText={setPhoneNumber}
+          onChangeText={modifyPhoneNumber}
           value={phoneNumber}
           placeholder="Enter Mobile Number"
           placeholderTextColor="grey"
@@ -120,7 +124,7 @@ export const Login = () => {
             </TouchableWithoutFeedback>
             <TextInput
               style={[styles.PhoneNumber, phoneNumber && { fontWeight: "500" }]}
-              onChangeText={setPhoneNumber}
+              onChangeText={modifyPhoneNumber}
               value={phoneNumber}
               placeholder="Enter Mobile Number"
               placeholderTextColor="grey"
