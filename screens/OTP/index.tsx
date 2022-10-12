@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
+import { AuthLayout } from "../../components";
 
 export const OTP = () => {
   return (
-    <View>
+    <AuthLayout>
       <Text>Hello this is OTP screen</Text>
-    </View>
+    </AuthLayout>
   );
 };
