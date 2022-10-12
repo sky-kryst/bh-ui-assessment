@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { AuthLayout } from "../../components";
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -20,6 +21,8 @@ export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorString, setErrorString] = useState("");
 
+  const navigation = useNavigation();
+
   const clearErrors = () => {
     setIsError(false);
     setErrorString("");
@@ -27,9 +30,9 @@ export const Login = () => {
 
   const setInitialStates = () => {
     setIsLoading(false);
-    setIsError(false);
     setPhoneNumber("");
     setCountryCode("+1");
+    clearErrors();
   };
 
   const setValidationError = (message: string) => {
@@ -51,6 +54,7 @@ export const Login = () => {
     setIsLoading(true);
     setTimeout(() => {
       setInitialStates();
+      navigation.navigate("OTP");
     }, 2000);
   };
 

@@ -6,6 +6,10 @@ console.log(Platform.OS, "height", height);
 console.log(Platform.OS, "width", width);
 
 export default StyleSheet.create({
+  Container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   Inputs: {
     height: height * 0.1,
     justifyContent: "space-between",
