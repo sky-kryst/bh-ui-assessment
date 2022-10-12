@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { AuthLayout, PrimaryButton } from "../../components";
+import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
 import styles from "./styles";
 
 export const Login = () => {
@@ -139,17 +139,17 @@ export const Login = () => {
           )}
         </View>
         <PrimaryButton onPress={submitForm} buttonText="Let's Go" />
-        <Text
-          style={[
-            styles.BlueLink,
-            { textTransform: "uppercase", textDecorationLine: "underline" },
-          ]}
+        <BlueLink
+          style={{
+            textTransform: "uppercase",
+            textDecorationLine: "underline",
+          }}
         >
           Skip to explore
-        </Text>
+        </BlueLink>
         <Text style={styles.TnC}>
-          I agree to the <Text style={styles.BlueLink}>User agreement</Text> and{" "}
-          <Text style={styles.BlueLink}>Privacy policy</Text> of BigHit
+          I agree to the <BlueLink>User agreement</BlueLink> and{" "}
+          <BlueLink>Privacy policy</BlueLink> of BigHit
         </Text>
       </View>
     </AuthLayout>
