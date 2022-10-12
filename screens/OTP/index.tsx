@@ -1,6 +1,7 @@
 import React, { Component, createRef } from "react";
 import { Text, TextInput, View } from "react-native";
 import { AuthLayout, PrimaryButton } from "../../components";
+import { useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
 
 const noOfInputsArr = [1, 2, 3, 4, 5, 6];
@@ -75,7 +76,15 @@ export class OTP extends Component {
     return (
       <AuthLayout
         headerText={
-          <Text style={{ fontWeight: "bold" }}>Enter 6 digit OTP sent on</Text>
+          <View>
+            <Text style={{ fontWeight: "bold" }}>
+              Enter 6 digit OTP sent on
+            </Text>
+            <Text>
+              {useLoginDetailsStore.getState().countryCode}{" "}
+              {useLoginDetailsStore.getState().phoneNumber}
+            </Text>
+          </View>
         }
       >
         <View style={styles.Form}>

@@ -57,9 +57,10 @@ export const Login = () => {
 
     setIsLoading(true);
     setTimeout(() => {
-      setInitialStates();
+      clearErrors();
+      setIsLoading(false);
       navigation.navigate("OTP");
-    }, 2000);
+    }, 1500);
   };
 
   return (
