@@ -13,8 +13,8 @@ import styles from "./styles";
 interface IProps {
   onPress?: (event: GestureResponderEvent) => void;
   buttonText: string;
-  containerStyles: StyleProp<ViewStyle>;
-  textStyles: StyleProp<TextStyle>;
+  containerStyles?: StyleProp<ViewStyle>;
+  textStyles?: StyleProp<TextStyle>;
 }
 
 export const PrimaryButton: React.FC<IProps> = ({
