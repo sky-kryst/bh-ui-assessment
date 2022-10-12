@@ -1,4 +1,5 @@
 import { Entypo, Fontisto } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Modal,
@@ -11,7 +12,6 @@ import {
 } from "react-native";
 import { AuthLayout } from "../../components";
 import styles from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 export const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -59,7 +59,13 @@ export const Login = () => {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout
+      headerText={
+        <>
+          Welcome to <Text style={{ fontWeight: "bold" }}>BigHit</Text>
+        </>
+      }
+    >
       <Modal
         animationType="slide"
         visible={isCountryCodeModal}
