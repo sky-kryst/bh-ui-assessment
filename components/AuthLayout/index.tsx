@@ -31,8 +31,8 @@ export const AuthLayout = ({ children }) => {
               Welcome to <Text style={{ fontWeight: "bold" }}>BigHit</Text>
             </Text>
           </View>
+          {children}
         </View>
-        {children}
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
