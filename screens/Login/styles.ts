@@ -1,9 +1,5 @@
-import { Dimensions, Platform, StyleSheet } from "react-native";
-
-const { height, width } = Dimensions.get("screen");
-
-console.log(Platform.OS, "height", height);
-console.log(Platform.OS, "width", width);
+import { StyleSheet } from "react-native";
+import { linkBlue, screenHeight, screenWidth } from "../../constants";
 
 export default StyleSheet.create({
   Container: {
@@ -11,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
   },
   Inputs: {
-    height: height * 0.1,
+    height: screenHeight * 0.1,
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -22,21 +18,21 @@ export default StyleSheet.create({
   CountryCode: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 22 + (width > 400 ? 2 : 0),
+    marginRight: 22 + (screenWidth > 400 ? 2 : 0),
     borderBottomWidth: 1,
     borderBottomColor: "lightgrey",
     width: 65,
     justifyContent: "space-between",
   },
   CountryCodeText: {
-    fontSize: 14 + (height > 820 ? 2 : 0),
+    fontSize: 14 + (screenHeight > 820 ? 2 : 0),
     color: "darkgrey",
     fontWeight: "500",
   },
   PhoneNumber: {
     borderBottomWidth: 1,
     borderBottomColor: "lightgrey",
-    fontSize: 17 + (height > 820 ? 2 : 0),
+    fontSize: 17 + (screenHeight > 820 ? 2 : 0),
     fontWeight: "400",
     minWidth: 162,
   },
@@ -49,12 +45,12 @@ export default StyleSheet.create({
     flex: 1,
   },
   BlueLink: {
-    color: "#5F9DFF",
+    color: linkBlue,
     fontWeight: "500",
   },
   Button: {
     backgroundColor: "black",
-    height: height > 650 ? 45 : 40,
+    height: screenHeight > 650 ? 45 : 40,
     width: "70%",
     justifyContent: "center",
     alignItems: "center",
