@@ -1,3 +1,9 @@
 {
-  "conventionalCommits.scopes": ["repo", "screens", "navigation", "assets"]
+  "conventionalCommits.scopes": [
+    "repo",
+    "screens",
+    "navigation",
+    "assets",
+    "components"
+  ]
 }
