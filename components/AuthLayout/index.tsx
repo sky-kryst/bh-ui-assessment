@@ -10,7 +10,12 @@ import {
 } from "react-native";
 import styles from "./styles";
 
-export const AuthLayout = ({ children }) => {
+interface IProps {
+  children: React.ReactNode;
+  headerText: React.ReactNode;
+}
+
+export const AuthLayout = ({ children, headerText }: IProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -27,9 +32,7 @@ export const AuthLayout = ({ children }) => {
             />
           </View>
           <View style={styles.HeaderContainer}>
-            <Text style={styles.HeaderText}>
-              Welcome to <Text style={{ fontWeight: "bold" }}>BigHit</Text>
-            </Text>
+            <Text style={styles.HeaderText}>{headerText}</Text>
           </View>
           {children}
         </View>
