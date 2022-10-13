@@ -1,26 +1,31 @@
 import React from "react";
 import {
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TouchableWithoutFeedback,
   View,
-  Image,
-  Platform,
-  KeyboardAvoidingView,
-  Keyboard,
 } from "react-native";
 import styles from "./styles";
 
 interface IProps {
   children: React.ReactNode;
   headerText: React.ReactNode;
+  keyboardVerticalOffset?: number;
 }
 
-export const AuthLayout = ({ children, headerText }: IProps) => {
+export const AuthLayout = ({
+  children,
+  headerText,
+  keyboardVerticalOffset,
+}: IProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.Container}
-      // keyboardVerticalOffset={-10}
+      keyboardVerticalOffset={keyboardVerticalOffset}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.Container}>
