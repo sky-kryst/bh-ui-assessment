@@ -8,18 +8,21 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import { screenHeight } from "../../constants";
 import styles from "./styles";
 
 interface IProps {
   children: React.ReactNode;
   headerText: React.ReactNode;
   keyboardVerticalOffset?: number;
+  headerHeight?: number;
 }
 
 export const AuthLayout = ({
   children,
   headerText,
   keyboardVerticalOffset,
+  headerHeight,
 }: IProps) => {
   return (
     <KeyboardAvoidingView
@@ -36,7 +39,14 @@ export const AuthLayout = ({
               resizeMode="stretch"
             />
           </View>
-          <View style={styles.HeaderContainer}>
+          <View
+            style={[
+              styles.HeaderContainer,
+              headerHeight && {
+                bottom: screenHeight * 0.35 - headerHeight / 2,
+              },
+            ]}
+          >
             <Text style={styles.HeaderText}>{headerText}</Text>
           </View>
           {children}
