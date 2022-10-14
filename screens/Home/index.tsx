@@ -12,7 +12,17 @@ export const Home = () => {
         style={Platform.OS === "android" ? "light" : "dark"}
       />
       <View style={styles.Circle}></View>
-      <Text>Hello this is Home screen</Text>
+      <View style={styles.Header}>
+        <View style={styles.HeaderTitle}>
+          <Text style={styles.HeaderText}>
+            Welcome To <Text style={{ fontWeight: "bold" }}>BigHit</Text>
+          </Text>
+          <Text style={styles.HeaderText}>India's biggest sports platform</Text>
+        </View>
+        <View style={styles.HeaderButton}>
+          <Text style={styles.HeaderText}>Create Profile</Text>
+        </View>
+      </View>
     </View>
   );
 };
