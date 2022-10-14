@@ -1,8 +1,5 @@
 import { StyleSheet } from "react-native";
-import { screenHeight, screenWidth } from "../../constants";
-
-const isWidthSmall = screenWidth < 400;
-const isHeightSmall = screenHeight < 650;
+import { isHeightSmall, isWidthSmall } from "../../constants";
 
 export default StyleSheet.create({
   Form: {
@@ -14,8 +11,6 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: isHeightSmall ? 70 : 75,
-    // borderWidth: 1,
-    // marginTop: 20,
   },
   Inputs: {
     flexDirection: "row",
@@ -32,12 +27,10 @@ export default StyleSheet.create({
     width: "100%",
     justifyContent: "space-between",
     alignItems: "center",
-    // borderWidth: 1,
     height: isHeightSmall ? 75 : 85,
   },
   Header: {
     height: 45,
-    // borderWidth: 1,
     justifyContent: "space-between",
     alignItems: "center",
   },
