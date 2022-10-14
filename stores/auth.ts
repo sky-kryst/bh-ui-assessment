@@ -7,7 +7,7 @@ interface IAuthStore {
 }
 
 export const useAuthStore = create<IAuthStore>((set) => ({
-  isAuthenticated: true,
+  isAuthenticated: false,
   authorizeUser: () => set(() => ({ isAuthenticated: true })),
   unAuthorizeUser: () => set(() => ({ isAuthenticated: false })),
 }));

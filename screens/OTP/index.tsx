@@ -1,5 +1,7 @@
+import { NavigationContext } from "@react-navigation/native";
 import React, { Component, createRef } from "react";
 import { Text, TextInput, View } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
 import { useAuthStore, useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
@@ -30,6 +32,7 @@ export class OTP extends Component {
     {}
   );
 
+  static contextType = NavigationContext;
   onInputChange = (key: number) => {
     return (input: string) => {
       this.setState({
@@ -108,6 +111,7 @@ export class OTP extends Component {
   render() {
     return (
       <AuthLayout
+        headerHeight={styles.Header.height}
         headerText={
           <View style={styles.Header}>
             <Text style={{ fontWeight: "bold" }}>
@@ -119,44 +123,50 @@ export class OTP extends Component {
                 {"-"}
                 {useLoginDetailsStore.getState().phoneNumber}
               </Text>
-              <BlueLink
-                style={{ fontWeight: "600", textDecorationLine: "underline" }}
+              <TouchableWithoutFeedback
+                onPress={() => this.context?.navigate("Login")}
               >
-                Change
-              </BlueLink>
+                <BlueLink
+                  style={{ fontWeight: "600", textDecorationLine: "underline" }}
+                >
+                  Change
+                </BlueLink>
+              </TouchableWithoutFeedback>
             </View>
           </View>
         }
       >
         <View style={styles.Form}>
-          <View style={styles.InputContainer}>
-            <View style={[styles.Inputs]}>
-              {noOfInputsArr.map((currentElement, currentIndex) => (
-                <TextInput
-                  key={String(currentElement)}
-                  maxLength={/* noOfInputs - currentIndex */ 1}
-                  keyboardType="number-pad"
-                  textContentType="oneTimeCode"
-                  textAlign="center"
-                  style={[
-                    styles.Input,
-                    this.state.isError && { borderColor: "red" },
-                  ]}
-                  value={this.state.otp[`${currentElement}`]}
-                  ref={this.inputRef[`${currentElement}`]}
-                  // onChangeText={this.onInputChange(currentElement)}
-                  onKeyPress={this.onKeyPressed(currentElement)}
-                />
-              ))}
-            </View>
-            <BlueLink>{this.state.isError && "Bingo"}</BlueLink>
+          {/* <View style={styles.InputContainer}> */}
+          <View style={[styles.Inputs]}>
+            {noOfInputsArr.map((currentElement, currentIndex) => (
+              <TextInput
+                key={String(currentElement)}
+                maxLength={/* noOfInputs - currentIndex */ 1}
+                keyboardType="number-pad"
+                textContentType="oneTimeCode"
+                textAlign="center"
+                style={[
+                  styles.Input,
+                  this.state.isError && { borderColor: "red" },
+                ]}
+                value={this.state.otp[`${currentElement}`]}
+                ref={this.inputRef[`${currentElement}`]}
+                // onChangeText={this.onInputChange(currentElement)}
+                onKeyPress={this.onKeyPressed(currentElement)}
+              />
+            ))}
           </View>
+          <BlueLink>{this.state.isError && this.state.errorString}</BlueLink>
+          {/* </View> */}
           <View style={styles.Buttons}>
             <PrimaryButton buttonText="Submit" onPress={this.onFormSubmit} />
             {this.state.isError ? (
               <BlueLink>Resend OTP</BlueLink>
             ) : (
-              <Text>Resend OTP 30s</Text>
+              <Text style={{ fontWeight: "bold", color: "grey" }}>
+                Resend OTP 30s
+              </Text>
             )}
           </View>
         </View>

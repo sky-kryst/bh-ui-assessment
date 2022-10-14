@@ -14,7 +14,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { screenHeight } from "../../constants";
+import { windowHeight } from "../../constants";
 import styles from "./styles";
 
 interface IProps {
@@ -131,7 +131,7 @@ export const AuthLayout = ({
             style={[
               styles.HeaderContainer,
               headerHeight && {
-                bottom: screenHeight * 0.35 - headerHeight / 2,
+                bottom: windowHeight * 0.35 - headerHeight / 2,
               },
             ]}
           >

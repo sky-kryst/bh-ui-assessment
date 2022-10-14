@@ -30,7 +30,7 @@ export default StyleSheet.create({
     height: isHeightSmall ? 75 : 85,
   },
   Header: {
-    height: 45,
+    height: 35,
     justifyContent: "space-between",
     alignItems: "center",
   },
