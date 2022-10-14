@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import Icons from "../../assets/bottomTabIcons";
+import { bottomsTabActive, bottomsTabInactive } from "../../constants";
 import { BlankScreen, Home } from "../../screens";
 
 const Tab = createBottomTabNavigator();
@@ -8,7 +9,13 @@ const Tab = createBottomTabNavigator();
 export const BottomsTab = () => {
   return (
     <Tab.Navigator
-      screenOptions={{ tabBarShowLabel: false, headerShown: false }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarActiveTintColor: bottomsTabActive,
+        tabBarInactiveTintColor: bottomsTabInactive,
+        tabBarStyle: { height: "10%" },
+      }}
     >
       <Tab.Screen
         name="Home"
