@@ -1,8 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { AuthStack } from "./navigation";
-import { Home } from "./screens";
+import { AuthStack, BottomsTab } from "./navigation";
 import { useAuthStore } from "./stores";
 
 export default function App() {
@@ -12,7 +11,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <NavigationContainer>
-        {isUserAuthenticated ? <Home /> : <AuthStack />}
+        {isUserAuthenticated ? <BottomsTab /> : <AuthStack />}
       </NavigationContainer>
     </SafeAreaView>
   );
