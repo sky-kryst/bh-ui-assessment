@@ -2,7 +2,7 @@ import { StatusBar, StyleSheet } from "react-native";
 import { screenHeight, screenWidth, windowHeight } from "../../constants";
 
 export default StyleSheet.create({
-  Container: { flex: 1 },
+  Container: { flex: 1, backgroundColor: "white" },
   Circle: {
     height: screenHeight,
     width: screenHeight,
@@ -37,5 +37,17 @@ export default StyleSheet.create({
     alignContent: "center",
     minWidth: "30%",
     borderRadius: windowHeight * 0.3,
+  },
+  Banner: {
+    borderWidth: 1,
+    height: "40%",
+  },
+  Categories: {
+    borderWidth: 1,
+    height: "20%",
+  },
+  Leaderboard: {
+    borderWidth: 1,
+    height: "18%",
   },
 });

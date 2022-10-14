@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Platform, Text, View } from "react-native";
+import { Platform, ScrollView, Text, View } from "react-native";
 import styles from "./styles";
 
 export const Home = () => {
@@ -23,6 +23,48 @@ export const Home = () => {
           <Text style={styles.HeaderText}>Create Profile</Text>
         </View>
       </View>
+      <ScrollView style={styles.Banner}>
+        {getArrayWithXElements(3).map((currentElement) => {
+          return <BannerItem key={currentElement} />;
+        })}
+      </ScrollView>
+      <ScrollView style={styles.Categories}>
+        {getArrayWithXElements(6).map((currentElement) => {
+          return <CategoryItem key={currentElement} />;
+        })}
+      </ScrollView>
+      <View style={styles.Leaderboard}>
+        <View>
+          <Text>Top Players on BigHit Leaderboard</Text>
+        </View>
+        <ScrollView>
+          {getArrayWithXElements(20).map((currentElement) => {
+            return <PlayerItem key={currentElement} />;
+          })}
+        </ScrollView>
+      </View>
     </View>
   );
+};
+
+const CategoryItem = () => {
+  return <View></View>;
+};
+
+const BannerItem = () => {
+  return <View></View>;
+};
+
+const PlayerItem = () => {
+  return <View></View>;
+};
+
+const getArrayWithXElements = (x: number) => {
+  let array: number[] = [];
+
+  for (let i = 1; i <= x; i++) {
+    array.push(i);
+  }
+
+  return array;
 };
