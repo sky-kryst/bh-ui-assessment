@@ -12,7 +12,6 @@ export const FullScreenLoader = ({ isLoading }: IProps) => {
     <Modal
       animationType="none"
       visible={isLoading}
-      presentationStyle="pageSheet"
       style={{ flex: 1 }}
       transparent
     >
@@ -20,9 +19,9 @@ export const FullScreenLoader = ({ isLoading }: IProps) => {
         <LottieView
           autoPlay
           style={{
-            width: 200,
-            height: 200,
-            backgroundColor: "#eee",
+            width: 70,
+            height: 70,
+            backgroundColor: "transparent",
           }}
           source={require("../../assets/loader-animation.json")}
         />

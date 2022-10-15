@@ -11,7 +11,12 @@ import {
   View,
 } from "react-native";
 import shallow from "zustand/shallow";
-import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
+import {
+  AuthLayout,
+  BlueLink,
+  FullScreenLoader,
+  PrimaryButton,
+} from "../../components";
 import { useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
 
@@ -71,6 +76,7 @@ export const Login = () => {
         </>
       }
     >
+      <FullScreenLoader {...{ isLoading }} />
       <Modal
         animationType="slide"
         visible={isCountryCodeModal}

@@ -2,7 +2,12 @@ import { NavigationContext } from "@react-navigation/native";
 import React, { Component, createRef } from "react";
 import { Keyboard, Text, TextInput, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
+import {
+  AuthLayout,
+  BlueLink,
+  FullScreenLoader,
+  PrimaryButton,
+} from "../../components";
 import { useAuthStore, useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
 
@@ -141,6 +146,7 @@ export class OTP extends Component {
           </View>
         }
       >
+        <FullScreenLoader isLoading={this.state.isLoading} />
         <View style={styles.Form}>
           <View style={styles.InputContainer}>
             <View style={[styles.Inputs]}>
