@@ -6,11 +6,13 @@ export default StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     flex: 1,
+    paddingVertical: 30,
   },
   InputContainer: {
     justifyContent: "space-between",
     alignItems: "center",
     height: isHeightSmall ? 70 : 75,
+    // borderWidth: 1,
   },
   Inputs: {
     flexDirection: "row",
@@ -31,7 +33,7 @@ export default StyleSheet.create({
   },
   Header: {
     height: 35,
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   PhoneNumber: {

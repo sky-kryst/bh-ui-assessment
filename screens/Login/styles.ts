@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
   Inputs: {
     height: screenHeight * 0.1,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   InputContainer: {
