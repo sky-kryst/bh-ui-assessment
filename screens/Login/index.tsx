@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Modal,
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -70,6 +71,7 @@ export const Login = () => {
 
   return (
     <AuthLayout
+      keyboardVerticalOffset={Platform.OS === "android" ? 50 : 10}
       headerText={
         <>
           Welcome to <Text style={{ fontWeight: "bold" }}>BigHit</Text>
@@ -85,21 +87,38 @@ export const Login = () => {
         }}
         presentationStyle="pageSheet"
       >
-        <View>
+        <View
+          style={{
+            height: "10%",
+            flexDirection: "row",
+            alignItems: "center",
+            paddingHorizontal: 12,
+          }}
+        >
           <Entypo
             name="chevron-thin-left"
             size={24}
             color="black"
             onPress={() => setIsCountryCodeModal(false)}
           />
-          <Text>Select Country</Text>
+          <Text style={{ fontWeight: "bold", flex: 1, textAlign: "center" }}>
+            Select Country
+          </Text>
         </View>
         <TextInput
-          style={[styles.PhoneNumber, phoneNumber && { fontWeight: "500" }]}
+          style={{
+            fontWeight: "500",
+            fontSize: 15,
+            borderBottomColor: "lightblue",
+            borderBottomWidth: 1,
+            width: "90%",
+            alignSelf: "center",
+            paddingBottom: 5,
+          }}
           onChangeText={modifyPhoneNumber}
           value={phoneNumber}
-          placeholder="Enter Mobile Number"
-          placeholderTextColor="grey"
+          placeholder="Search your country"
+          placeholderTextColor="darkgrey"
           keyboardType="number-pad"
           maxLength={10}
           textContentType="telephoneNumber"
@@ -109,9 +128,23 @@ export const Login = () => {
           <ScrollView style={styles.Container}>
             {countryCodeArray.map((currentElement) => {
               return (
-                <View style={styles.Show} key={currentElement.country}>
-                  <Text>{currentElement.country}</Text>
-                </View>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    modifyCountryCode(currentElement.code);
+                    setIsCountryCodeModal(false);
+                  }}
+                  key={currentElement.country}
+                >
+                  <View style={styles.CountryCodeCard}>
+                    <View style={styles.CountryCodeSymbol}>
+                      <Fontisto name="world-o" size={25} color="black" />
+                      <Text style={styles.CountryCodeCardText}>
+                        {currentElement.country}
+                      </Text>
+                    </View>
+                    <Text>{currentElement.code}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
               );
             })}
           </ScrollView>
@@ -154,12 +187,14 @@ export const Login = () => {
           style={{
             textTransform: "uppercase",
             textDecorationLine: "underline",
+            fontWeight: "bold",
           }}
         >
           Skip to explore
         </BlueLink>
         <Text style={styles.TnC}>
-          I agree to the <BlueLink>User agreement</BlueLink> and{" "}
+          I agree to the{" "}
+          <BlueLink style={{ fontWeight: "bold" }}>User agreement</BlueLink> and{" "}
           <BlueLink>Privacy policy</BlueLink> of BigHit
         </Text>
       </View>
@@ -167,7 +202,7 @@ export const Login = () => {
   );
 };
 
-let countryCodeArray = [];
+let countryCodeArray: Array<{ country: string; code: string }> = [];
 
 for (let i = 1; i <= 20; i++) {
   countryCodeArray.push({ country: `String${i}`, code: `+${i}` });

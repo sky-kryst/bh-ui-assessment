@@ -1,5 +1,10 @@
 import { StyleSheet } from "react-native";
-import { linkBlue, screenHeight, screenWidth } from "../../constants";
+import {
+  linkBlue,
+  screenHeight,
+  screenWidth,
+  windowHeight,
+} from "../../constants";
 
 export default StyleSheet.create({
   Container: {
@@ -63,5 +68,21 @@ export default StyleSheet.create({
   TnC: {
     fontSize: 12,
     color: "grey",
+    fontWeight: "bold",
+  },
+  CountryCodeCard: {
+    height: windowHeight * 0.075,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 12,
+  },
+  CountryCodeSymbol: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  CountryCodeCardText: {
+    fontWeight: "bold",
+    marginLeft: 20,
   },
 });
