@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {
-  Image,
+  ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -14,7 +14,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { windowHeight } from "../../constants";
 import styles from "./styles";
 
 interface IProps {
@@ -105,11 +104,13 @@ export const AuthLayout = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.Container}>
           <Animated.View style={[styles.BannerContainer, firstImageStyles]}>
-            <Image
+            <ImageBackground
               source={require("../../assets/images/login.png")}
               style={styles.BannerImage}
               resizeMode="stretch"
-            />
+            >
+              <Header {...{ headerHeight }}>{headerText}</Header>
+            </ImageBackground>
           </Animated.View>
           <Animated.View
             style={[
@@ -121,25 +122,37 @@ export const AuthLayout = ({
               secondImageStyles,
             ]}
           >
-            <Image
+            <ImageBackground
               source={require("../../assets/images/login2.png")}
               style={styles.BannerImage}
               resizeMode="stretch"
-            />
+            >
+              <Header {...{ headerHeight }}>{headerText}</Header>
+            </ImageBackground>
           </Animated.View>
-          <View
-            style={[
-              styles.HeaderContainer,
-              headerHeight && {
-                bottom: windowHeight * 0.35 - headerHeight / 2,
-              },
-            ]}
-          >
-            <Text style={styles.HeaderText}>{headerText}</Text>
-          </View>
           {children}
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
+  );
+};
+
+interface IHeaderProps {
+  children: React.ReactNode;
+  headerHeight?: number;
+}
+
+const Header: React.FC<IHeaderProps> = ({ headerHeight, children }) => {
+  return (
+    <View
+      style={[
+        styles.HeaderContainer,
+        headerHeight && {
+          top: headerHeight / 2,
+        },
+      ]}
+    >
+      <Text style={styles.HeaderText}>{children}</Text>
+    </View>
   );
 };

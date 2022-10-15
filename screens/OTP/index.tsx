@@ -1,8 +1,13 @@
 import { NavigationContext } from "@react-navigation/native";
 import React, { Component, createRef } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Keyboard, Text, TextInput, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { AuthLayout, BlueLink, PrimaryButton } from "../../components";
+import {
+  AuthLayout,
+  BlueLink,
+  FullScreenLoader,
+  PrimaryButton,
+} from "../../components";
 import { useAuthStore, useLoginDetailsStore } from "../../stores";
 import styles from "./styles";
 
@@ -79,6 +84,7 @@ export class OTP extends Component {
   };
 
   onFormSubmit = () => {
+    Keyboard.dismiss();
     const otpLength = (
       Object.values(this.state.otp).reduce(
         (accumulator: string, currentElement) =>
@@ -88,7 +94,7 @@ export class OTP extends Component {
     ).length;
 
     if (otpLength < 6) {
-      this.setState({ errorString: "OTP at least 6 digits", isError: true });
+      this.setState({ errorString: "Please enter valid OTP", isError: true });
       return;
     }
 
@@ -114,11 +120,11 @@ export class OTP extends Component {
         headerHeight={styles.Header.height}
         headerText={
           <View style={styles.Header}>
-            <Text style={{ fontWeight: "bold" }}>
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>
               Enter 6 digit OTP sent on
             </Text>
             <View style={styles.PhoneNumber}>
-              <Text>
+              <Text style={{ fontSize: 12 }}>
                 {useLoginDetailsStore.getState().countryCode}
                 {"-"}
                 {useLoginDetailsStore.getState().phoneNumber}
@@ -127,7 +133,11 @@ export class OTP extends Component {
                 onPress={() => this.context?.navigate("Login")}
               >
                 <BlueLink
-                  style={{ fontWeight: "600", textDecorationLine: "underline" }}
+                  style={{
+                    fontWeight: "600",
+                    textDecorationLine: "underline",
+                    fontSize: 12,
+                  }}
                 >
                   Change
                 </BlueLink>
@@ -136,33 +146,45 @@ export class OTP extends Component {
           </View>
         }
       >
+        <FullScreenLoader isLoading={this.state.isLoading} />
         <View style={styles.Form}>
-          {/* <View style={styles.InputContainer}> */}
-          <View style={[styles.Inputs]}>
-            {noOfInputsArr.map((currentElement, currentIndex) => (
-              <TextInput
-                key={String(currentElement)}
-                maxLength={/* noOfInputs - currentIndex */ 1}
-                keyboardType="number-pad"
-                textContentType="oneTimeCode"
-                textAlign="center"
-                style={[
-                  styles.Input,
-                  this.state.isError && { borderColor: "red" },
-                ]}
-                value={this.state.otp[`${currentElement}`]}
-                ref={this.inputRef[`${currentElement}`]}
-                // onChangeText={this.onInputChange(currentElement)}
-                onKeyPress={this.onKeyPressed(currentElement)}
-              />
-            ))}
+          <View style={styles.InputContainer}>
+            <View style={[styles.Inputs]}>
+              {noOfInputsArr.map((currentElement, currentIndex) => (
+                <TextInput
+                  key={String(currentElement)}
+                  // had made manLength dynamic for paste functionality
+                  maxLength={/* noOfInputs - currentIndex */ 1}
+                  keyboardType="number-pad"
+                  textContentType="oneTimeCode"
+                  textAlign="center"
+                  style={[
+                    styles.Input,
+                    this.state.isError && { borderColor: "red" },
+                  ]}
+                  value={this.state.otp[`${currentElement}`]}
+                  ref={this.inputRef[`${currentElement}`]}
+                  // onChangeText={this.onInputChange(currentElement)}
+                  onKeyPress={this.onKeyPressed(currentElement)}
+                  onSubmitEditing={this.onFormSubmit}
+                  onFocus={() =>
+                    this.setState({ errorString: "", isError: false })
+                  }
+                />
+              ))}
+            </View>
+            <Text style={{ color: "red" }}>
+              {this.state.isError && this.state.errorString}
+            </Text>
           </View>
-          <BlueLink>{this.state.isError && this.state.errorString}</BlueLink>
-          {/* </View> */}
           <View style={styles.Buttons}>
             <PrimaryButton buttonText="Submit" onPress={this.onFormSubmit} />
             {this.state.isError ? (
-              <BlueLink>Resend OTP</BlueLink>
+              <BlueLink
+                style={{ fontWeight: "bold", textDecorationLine: "underline" }}
+              >
+                Resend OTP
+              </BlueLink>
             ) : (
               <Text style={{ fontWeight: "bold", color: "grey" }}>
                 Resend OTP 30s
